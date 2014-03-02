@@ -1,33 +1,27 @@
-package com.chungsnet.htimer;
+package net.howardchung.htimer;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+
+import net.howardchung.htimer.R;
 
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.os.PowerManager;
-import android.os.Vibrator;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.WindowManager;
 import android.widget.LinearLayout;
-import android.widget.LinearLayout.LayoutParams;
-import android.widget.TextView;
 import android.widget.ScrollView;
-import android.widget.Button;
 
 public class MainActivity extends Activity {
 	public final static String EXTRA_MESSAGE = "com.chungsnet.htimer.MESSAGE";
 	LayoutInflater inflater;
 	ScrollView sv;
 	LinearLayout ll;
-	ArrayList<StopwatchPanel> stopwatches;
+	HashMap<StopwatchPanel, Stopwatch> stopwatches;
 
 	// TODO start all, stop all, reset all
 	// TODO add/remove timers
-	// TODO wakelock
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,16 +30,16 @@ public class MainActivity extends Activity {
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		sv = (ScrollView) inflater.inflate(R.layout.activity_main, null);
 		ll = (LinearLayout) sv.findViewById(R.id.linearlayout);
-		stopwatches = new ArrayList<StopwatchPanel>();
+		stopwatches = new HashMap<StopwatchPanel, Stopwatch>();
 		this.setContentView(sv);
-		//first one added by default, all others require button
+		// first one added by default, all others require button
 		addStopwatch();
 	}
 
 	public void addStopwatch() {
 		StopwatchPanel newsw = new StopwatchPanel(this);
 		ll.addView(newsw);
-		stopwatches.add(newsw);
+		stopwatches.put(newsw, newsw.getHandler().getTimer());
 	}
 
 	@Override

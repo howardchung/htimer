@@ -1,4 +1,4 @@
-package com.chungsnet.htimer;
+package net.howardchung.htimer;
 
 public class Stopwatch {
 

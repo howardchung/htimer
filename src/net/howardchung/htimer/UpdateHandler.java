@@ -1,9 +1,8 @@
-package com.chungsnet.htimer;
+package net.howardchung.htimer;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
-import java.util.concurrent.TimeUnit;
 
 import android.annotation.TargetApi;
 import android.os.Build;

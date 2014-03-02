@@ -1,4 +1,4 @@
-package com.chungsnet.htimer;
+package net.howardchung.htimer;
 
 import android.content.Context;
 import android.os.Vibrator;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 public class StopwatchPanel extends LinearLayout {
 
 	Context myContext;
+	private UpdateHandler handler;
 
 	public StopwatchPanel(Context context) {
 		super(context);
@@ -17,11 +18,15 @@ public class StopwatchPanel extends LinearLayout {
 		createPanel();
 	}
 
+	public UpdateHandler getHandler() {
+		return handler;
+	}
+
 	public void createPanel() {
 		TextView tv = new TextView(myContext);
 		tv.setText("00:00:00.000", null);
 		tv.setTextSize(40);
-		final UpdateHandler handler = new UpdateHandler(tv);
+		handler = new UpdateHandler(tv);
 		this.addView(tv);
 
 		Button b = new Button(myContext);
@@ -32,7 +37,7 @@ public class StopwatchPanel extends LinearLayout {
 			}
 		};
 		b.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
-				LayoutParams.WRAP_CONTENT,(float)0.5));
+				LayoutParams.WRAP_CONTENT, (float) 0.5));
 		b.setOnClickListener(myhandler1);
 		this.addView(b);
 
@@ -44,7 +49,7 @@ public class StopwatchPanel extends LinearLayout {
 			}
 		};
 		r.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
-				LayoutParams.WRAP_CONTENT,(float)0.5));
+				LayoutParams.WRAP_CONTENT, (float) 0.5));
 		r.setOnClickListener(myhandler2);
 		this.addView(r);
 	}
